@@ -1,10 +1,12 @@
 package org.soulcodeacademy.helpr.controllers;
 
 import org.soulcodeacademy.helpr.domain.Cargo;
+import org.soulcodeacademy.helpr.domain.dto.CargoDTO;
 import org.soulcodeacademy.helpr.services.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController // retornos de dados
@@ -38,20 +40,19 @@ public class CargoController {
     }
 
 
-    //Post, enviar dados do cliente para o servidos.
-    @PostMapping("/cargos")
-    public Cargo salvar (@RequestBody Cargo cargo){
-        // RequestBody - extrair o JSON do corpo e converte para cargo (deserialização)
+    // Podemos usar o mesmo endpoint para verbos diferentes
+    @PostMapping("/cargos") // REQUISIÇÃO TIPO POST para /cargos
+    public Cargo salvar(@Valid @RequestBody CargoDTO cargo) {
+        // @RequestBody - extrair o JSON do corpo e converte para Cargo (deserialização)
         Cargo salvo = this.cargoService.salvar(cargo);
-        return salvo;
-        //METODO PARA PEGAR OS DADOS INSERIDOS E DEPOIS ENVIAR PARA CARGO SERVICE SALVAR.
-
+        return salvo; // A resposta será o cargo inserido
     }
-    //Mapeia requisições de verbo PUT
-    @PutMapping("/cargos/{idCargo}")
-    public Cargo atualizar (@PathVariable Integer idCargo, @RequestBody Cargo cargo){
-        Cargo atualizado = this.cargoService.atualizar(idCargo,cargo);
-        return atualizado;     //Reposta para o cliente (cargo atualizado)
+
+    // Mapeia requisições do verbo PUT
+    @PutMapping("/cargos/{idCargo}") // /cargos/5
+    public Cargo atualizar(@PathVariable Integer idCargo, @Valid @RequestBody CargoDTO cargo) {
+        Cargo atualizado = this.cargoService.atualizar(idCargo, cargo);
+        return atualizado; // Resposta para o cliente (cargo atualizado)
     }
 
     @DeleteMapping("/cargos/{idCargo}")
