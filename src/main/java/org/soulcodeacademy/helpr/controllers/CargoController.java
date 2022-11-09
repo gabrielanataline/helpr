@@ -45,6 +45,8 @@ public class CargoController {
     public Cargo salvar(@Valid @RequestBody CargoDTO cargo) {
         // @RequestBody - extrair o JSON do corpo e converte para Cargo (deserialização)
         Cargo salvo = this.cargoService.salvar(cargo);
+
+
         return salvo; // A resposta será o cargo inserido
     }
 
