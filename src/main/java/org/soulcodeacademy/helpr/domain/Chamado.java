@@ -5,9 +5,8 @@ import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity  //informando que essa classe é uma entidade na Tabela
+@Entity
 public class Chamado {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idChamado;
@@ -22,20 +21,21 @@ public class Chamado {
 
     private LocalDate dataFechamento;
 
-    @Enumerated(EnumType.STRING)    // mudar a forma que a tabela irá representar o status, para String....
+    @Enumerated(EnumType.STRING) // representando o enum "escrito"
     private StatusChamado status = StatusChamado.RECEBIDO;
 
-    @ManyToOne     // identificar que há um relacionamento (N chamados para 1 funcionario)
+    @ManyToOne // MUITOS CHAMADOS P/ UM FUNCIONÁRIO
     @JoinColumn(name = "id_funcionario") // FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario)
     private Funcionario funcionario;
 
-    @ManyToOne   // N chamados para 1 cliente
+    @ManyToOne // MUITOS CHAMADOS P/ UM CLIENTE
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;
 
-    public Chamado (){}
+    public Chamado() {
+    }
 
-    public Chamado (Integer idChamado, String titulo, String descricao){
+    public Chamado(Integer idChamado, String titulo, String descricao) {
         this.idChamado = idChamado;
         this.titulo = titulo;
         this.descricao = descricao;
