@@ -1,7 +1,7 @@
 package org.soulcodeacademy.helpr.domain.enums;
 
 public enum StatusChamado {
-    RECEBIDO,  //quando o chamado foi criado
-    ATRIBUIDO, //quando um funcionário está resolvendo
-    CONCLUIDO  //quando o chamado foi resolvido
+    RECEBIDO, // Quando o chamado é criado
+    ATRIBUIDO, // Quando um funcionário está resolvendo o chamado
+    CONCLUIDO // Quando o chamado foi resolvido
 }

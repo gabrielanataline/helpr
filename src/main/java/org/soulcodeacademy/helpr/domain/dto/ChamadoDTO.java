@@ -3,20 +3,21 @@ package org.soulcodeacademy.helpr.domain.dto;
 import org.soulcodeacademy.helpr.domain.enums.StatusChamado;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class ChamadoDTO {
     @NotBlank(message = "titulo é obrigatório")
     private String titulo;
 
-    @NotBlank(message = "descrição é obrigatória")
+    @NotBlank(message = "descricao é obrigatória")
     private String descricao;
 
-    @NotBlank(message = "idCliente é obrigatório")
+    @NotNull(message = "idCliente é obrigatorio")
     private Integer idCliente;
 
     private StatusChamado status;
 
-    private Integer idFuncionaio;
+    private Integer idFuncionario;
 
     public String getTitulo() {
         return titulo;
@@ -50,11 +51,11 @@ public class ChamadoDTO {
         this.status = status;
     }
 
-    public Integer getIdFuncionaio() {
-        return idFuncionaio;
+    public Integer getIdFuncionario() {
+        return idFuncionario;
     }
 
-    public void setIdFuncionaio(Integer idFuncionaio) {
-        this.idFuncionaio = idFuncionaio;
+    public void setIdFuncionario(Integer idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 }
