@@ -4,6 +4,7 @@ import ch.qos.logback.core.net.server.Client;
 import org.soulcodeacademy.helpr.domain.Cliente;
 import org.soulcodeacademy.helpr.domain.dto.ClienteDTO;
 import org.soulcodeacademy.helpr.repositories.ClienteRepository;
+import org.soulcodeacademy.helpr.services.errors.RecursoNaoEncontradoError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +29,7 @@ public class ClienteService {
         Optional<Cliente> cliente = this.clienteRepository.findById(idCliente);
 
         if(cliente.isEmpty()){
-            throw new RuntimeException("O cliente não foi encontrado");
+            throw new RecursoNaoEncontradoError("O cliente não foi encontrado");
         } else {
             return cliente.get();    //pega o valor da entidade encontrada
         }
